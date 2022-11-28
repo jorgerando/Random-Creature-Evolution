@@ -34,7 +34,7 @@ var constraint2 = Matter.Constraint.create({
     pointA : { x : 0, y: 0 },
     bodyB: boxC,
     pointB : { x : 0, y: 0},
-    stiffness: 0,
+    stiffness: 0.01,
     length:150 ,
 });
 
