@@ -5,6 +5,14 @@ var Engine = Matter.Engine,
     Bodies = Matter.Bodies,
     Composite = Matter.Composite;
 
+var defaultCategory = 0x0001,
+           redCategory = 0x0002,
+           greenCategory = 0x0004,
+           blueCategory = 0x0008;
+
+var colorA = '#f55a3c',
+           colorB = '#063e7b',
+           colorC = '#f5d259';
 // create an engine
 var engine = Engine.create();
 var render = Render.create({
@@ -31,6 +39,15 @@ var rueda2 = Bodies.rectangle(x-70,y+150,50,50,{ friction:10});
 elements.push(rueda2);
 var boxA = Bodies.rectangle(x-100,y-50, 50, 50 ,{ friction:10});
 elements.push(boxA);
+
+var rueda1_ = Bodies.circle(310, 40, 30, { collisionFilter: { mask:  greenCategory } })
+
+
+Composite.add(engine.world, [rueda1_]);
+
+
+
+
 // uniones
 var constraint = Matter.Constraint.create({
     bodyA: cuerpo,
