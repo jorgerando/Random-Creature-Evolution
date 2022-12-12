@@ -1,3 +1,44 @@
+var defaultCategory = 0x0001, // for ground
+  CategoryOne = 0x0002,
+  CategoryTwo = 0x0004
+
+
+
+var groundCategory = 0b00000;
+var c1 = 0b00001;
+var c2 = 0b00010;
+var c3 = 0b00011;
+var c4 = 0b00100;
+var c5 = 0b00101;
+var c6 = 0b00110;
+var c7 = 0b00111;
+var c8 = 0b01000;
+var c9 = 0b01001;
+var c10 = 0b01010;
+var c11 = 0b01011;
+var c12 = 0b01100;
+var c13 = 0b01101;
+var c14 = 0b01110;
+var c15 = 0b01111;
+var c16 = 0b10000;
+var c17 = 0b10001;
+var c18 = 0b10010;
+var c19 = 0b10011;
+var c20 = 0b10100;
+var c21 = 0b10101;
+var c22 = 0b10110;
+var c23 = 0b10111;
+var c24 = 0b11000;
+var c25 = 0b11001;
+var c26 = 0b11010;
+var c27 = 0b11011;
+var c28 = 0b11100;
+var c29 = 0b11101;
+var c30 = 0b11110;
+var c31 = 0b11111;
+
+
+
 // module aliases
 var Engine = Matter.Engine,
     Render = Matter.Render,
@@ -14,47 +55,77 @@ var render = Render.create({
 });
 
 
-// create two boxes and a ground
-var boxA = Bodies.rectangle(100, 0, 40, 40  );
-var boxB = Bodies.rectangle(100+40, 0, 80, 80 );
-var boxC = Bodies.rectangle(100+80, 0, 130, 50 );
 
 
-var constraint = Matter.Constraint.create({
-    bodyA: boxA,
-    pointA : { x : 0, y: 0 },
-    bodyB: boxB,
-    pointB : { x : 0, y: 0},
-    stiffness: 0.01,
-    length:100 ,
-});
-
-var constraint2 = Matter.Constraint.create({
-    bodyA: boxB,
-    pointA : { x : 0, y: 0 },
-    bodyB: boxC,
-    pointB : { x : 0, y: 0},
-    stiffness: 0,
-    length:150 ,
-});
-
-var constraint3 = Matter.Constraint.create({
-    bodyA: boxA,
-    pointA : { x : 0, y: 0 },
-    bodyB: boxC,
-    pointB : { x : 0, y: 0},
-    stiffness: 0.01,
-    length:220 ,
-});
 
 
-var ground = Bodies.rectangle(400, 610, 2000, 60, { friction:1,isStatic: true } );
-var ground2 = Bodies.rectangle(0, 0, 10, 2000 ,{ friction:1,isStatic: true } );
-var ground3 = Bodies.rectangle(800, 0, 10, 2000 ,{ friction:1,isStatic: true } );
+// boxA y boxB colisionan entres si, boxC solo con ground. (boxA es el pequeño, boxC es el alargado de abajo)
+// boxA y boxB formarian parte de la misma criatura, boxC forma parte de otra criatura
+// Ej: estas generando la criatura 11/32 de un nivel. Para cada componente de esta criatura, pones:
+// category: CategoryEleven,
+// mask: defaultCategory | CategoryEleven,
+
+
+var boxA = Bodies.rectangle(100, -300, 40, 40, {
+  collisionFilter: {
+    category: CategoryOne,
+    mask: defaultCategory | CategoryOne,
+  },
+})
+
+var boxB = Bodies.rectangle(100, -100, 80, 80, {
+  collisionFilter: {
+    category: CategoryOne,
+    mask: defaultCategory | CategoryOne,
+  },
+})
+
+var boxC = Bodies.rectangle(100, 0, 130, 50, {
+  collisionFilter: {
+    category: CategoryTwo,
+    mask: defaultCategory | CategoryTwo,
+  },
+})
+
+
+
+
+
+
+var ground = Bodies.rectangle(400, 610, 2000, 60, {
+  collisionFilter: {
+    category: defaultCategory,
+  },
+  friction:1,
+  isStatic: true,
+})
+
+var ground2 = Bodies.rectangle(0, 0, 10, 2000, {
+  collisionFilter: {
+    category: defaultCategory,
+  },
+  friction:1,
+  isStatic: true,
+})
+
+var ground3 = Bodies.rectangle(800, 0, 10, 2000, {
+  collisionFilter: {
+    category: defaultCategory,
+  },
+  friction:1,
+  isStatic: true,
+})
+
+
+
+
+
+
+
 
 // add all of the bodies to the world
 
-Composite.add(engine.world, [ground ,ground3 ,ground2,constraint,constraint2,constraint3 ,boxA,boxB,boxC]);
+Composite.add(engine.world, [ground, ground3, ground2, boxA, boxB, boxC]);
 Render.run(render);
 
 // create runner
@@ -68,35 +139,4 @@ function setup() {
   createCanvas(2000, 800);
 }
 a = 0;
-function draw() {
-  background(220);
-
- if (frameCount % 50 == 0 ){
-  point  = Matter.Vector.create(boxB.position.x,boxB.position.y+40)
-  f = Matter.Vector.create(0,-0.2)
-  Matter.Body.applyForce(boxB, point, f)
-}
-
-if (frameCount % 100 == 0 ){
- point  = Matter.Vector.create(boxC.position.x-40,boxC.position.y)
- f = Matter.Vector.create(0,-0.2)
- Matter.Body.applyForce(boxC, point, f)
-}
-
-
- /*
-  if (frameCount % 50 == 0 ){
-    point  = Matter.Vector.create(aleta.position.x+50*cos(aleta.angle),aleta.position.y*sin(aleta.angle))
-    f = Matter.Vector.create(0,0.2)
-    f = Matter.Vector.rotate(f, aleta.angle + 3.14/2)
-    Matter.Body.applyForce(aleta, point, f)
-
-    point  = Matter.Vector.create(aleta2.position.x+50*cos(aleta2.angle),aleta2.position.y*sin(aleta.angle))
-    f = Matter.Vector.create(0,0.2)
-    f = Matter.Vector.rotate(f, aleta2.angle+ 3.14/2)
-    Matter.Body.applyForce(aleta2, point, f)
-  }
-*/
-
-
-}
+function draw() {}
