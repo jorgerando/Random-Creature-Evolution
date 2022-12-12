@@ -31,9 +31,10 @@ Runner.run(runner, engine);
 Render.run(render);
 
 var individuos = [] ;
-for (var i = 0 ; i < 100 ; i++){
-  var a  = new Individuo(0x0001) ;
-  a.crearIndividuoRandom([300 + i *350 ,100],engine.world);
+var n = 1 ;
+for (var i = 0 ; i < n ; i++){
+  var a  = new Individuo() ;
+  a.crearIndividuoRandom([350+i*350,100],engine.world);
   individuos.push(a);
 }
 
@@ -46,13 +47,13 @@ function setup() {
 function draw() {
  background(220);
 
- for (var i = 0 ; i < 100 ; i++){
+ for (var i = 0 ; i < n ; i++){
    individuos[i].activarPropulsores(frameCount);
  }
 
  // esperamos un poco para evitar colisiones en entre las partes de  los individuos
  if (frameCount > 3 && act ){
-   for (var i = 0 ; i < 100 ; i++){
+   for (var i = 0 ; i < n ; i++){
      individuos[i].generarUnionesCuerpo(engine.world);
    }
    act = false ;

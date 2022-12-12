@@ -3,7 +3,7 @@ class Individuo {
    constructor(filtro_){
 
      // caracteristicas que definen a un individuo
-     this.filtro = filtro_ ;
+     this.filtro = "-" ;
      this.posicion ;
 
      this.partes = [] ;
