@@ -8,6 +8,7 @@ class Propulsor{
        this.direcciones =  [ [0,1] , [1,0] , [-1,0] , [0,-1] ] ;
        this.frMax = 200 ;
        this.posicion = [200,0] ;
+       this.tipo = "pr" ;
 
        this.direccion ;
        this.masa ;
@@ -15,6 +16,7 @@ class Propulsor{
        this.f ;
        this.uniones ;
        this.body ;
+       this.indicesUnion = [] ;
 
      }
 
@@ -23,7 +25,7 @@ class Propulsor{
     }
 
     calcularF(masa){
-      this.f = masa *0.1 ;
+      this.f = masa *0.08 ;
     }
 
     clacularUniones(){
@@ -35,7 +37,7 @@ class Propulsor{
       var abajoDerecha = [ centro[0] - w/2 * ratio , centro[1] + h/2 * ratio   ] ;
       var arribaIzq = [ centro[0] + w/2 * ratio , centro[1] - h/2 * ratio  ] ;
       var abajoIzq = [centro[0] + w/2 * ratio ,  centro[1] + h/2 * ratio  ] ;
-      this.uniones = [arribaDerecha,abajoDerecha,arribaIzq,abajoIzq] ;
+      this.uniones = [centro,arribaIzq,abajoIzq,arribaDerecha,abajoDerecha] ;
     }
 
     //Api
@@ -46,12 +48,35 @@ class Propulsor{
        this.direccion = this.direcciones[Math.floor(Math.random()*this.direcciones.length)];
        this.calcularFr(this.masa) ;
        this.calcularF(this.masa) ;
-       this.body = Bodies.rectangle(this.posicion[0],this.posicion[1],this.L,this.L,{ friction:10},{ collisionFilter: { group:filtro  } });
+
+       this.body = Bodies.rectangle(this.posicion[0],this.posicion[1],this.L,this.L,{
+       collisionFilter: {
+       category: filtro,
+       mask: defaultCategory | filtro,
+       },
+       });
+
        this.body.mass = this.masa ;
        this.body.restitution = 0.8
        this.clacularUniones();
-       //this.body.collisionFilter.group = filtro ;
-       //this.body.collisionFilter.mask = 0b0001 | filtro ;
+    }
+
+    generar(p,dir_,masa_,filtro){
+       this.posicion = p ;
+       this.masa = masa_ ;
+       this.direccion = dir_ ;
+       this.calcularFr(this.masa) ;
+       this.calcularF(this.masa) ;
+       this.body = Bodies.rectangle(this.posicion[0],this.posicion[1],this.L,this.L,{
+       collisionFilter: {
+       category: filtro,
+       mask: defaultCategory | filtro,
+       },
+       });
+       this.body.mass = this.masa ;
+       this.indicesUnion = [] ;
+       this.body.restitution = 0.8
+       this.clacularUniones();
     }
 
     activar(count){
@@ -69,8 +94,22 @@ class Propulsor{
 
     mover(p){
       Matter.Body.setPosition( this.body,Matter.Vector.create(p[0], p[1]) ) ;
+      this.posicion = p ;
     }
 
+    devolverUnion(n){
+      return this.uniones[n] ;
+    }
 
+    marcarUnion(indice,tipo){
+     this.indicesUnion.push( [ indice,tipo] );
+    }
+
+    copiarse(filtro){
+      var copia = new Propulsor();
+      copia.generar(this.posicion,this.direccion,this.masa,filtro);
+      copia.indicesUnion = this.indicesUnion;
+      return copia ;
+    }
 
 }

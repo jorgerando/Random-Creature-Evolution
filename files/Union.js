@@ -2,8 +2,8 @@ class Union {
 
      constructor(){
 
-       this.coeficienteMuyElastico = 0.001
-       this.coeficienteElastico = 0.001
+       this.coeficienteMuyElastico = 0.01
+       this.coeficienteElastico = 0.01
        this.coeficienteDuro = 0 ;
        this.variationMax = 250 ;
        this.variationMin = -100 ;

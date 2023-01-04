@@ -2,8 +2,6 @@ var defaultCategory = 0x0001, // for ground
   CategoryOne = 0x0002,
   CategoryTwo = 0x0004
 
-
-
 var groundCategory = 0b00000;
 var c1 = 0b00001;
 var c2 = 0b00010;
@@ -37,8 +35,6 @@ var c29 = 0b11101;
 var c30 = 0b11110;
 var c31 = 0b11111;
 
-
-
 // module aliases
 var Engine = Matter.Engine,
     Render = Matter.Render,
@@ -55,41 +51,26 @@ var render = Render.create({
 });
 
 
-
-
-
-
-// boxA y boxB colisionan entres si, boxC solo con ground. (boxA es el pequeño, boxC es el alargado de abajo)
-// boxA y boxB formarian parte de la misma criatura, boxC forma parte de otra criatura
-// Ej: estas generando la criatura 11/32 de un nivel. Para cada componente de esta criatura, pones:
-// category: CategoryEleven,
-// mask: defaultCategory | CategoryEleven,
-
-
 var boxA = Bodies.rectangle(100, -300, 40, 40, {
   collisionFilter: {
-    category: CategoryOne,
-    mask: defaultCategory | CategoryOne,
+    category: c1,
+    mask: defaultCategory | c1 ,
   },
 })
 
 var boxB = Bodies.rectangle(100, -100, 80, 80, {
   collisionFilter: {
-    category: CategoryOne,
-    mask: defaultCategory | CategoryOne,
+    category: c2,
+    mask: defaultCategory | c2,
   },
 })
 
 var boxC = Bodies.rectangle(100, 0, 130, 50, {
   collisionFilter: {
-    category: CategoryTwo,
-    mask: defaultCategory | CategoryTwo,
+    category: c3 ,
+    mask: defaultCategory | c3,
   },
 })
-
-
-
-
 
 
 var ground = Bodies.rectangle(400, 610, 2000, 60, {

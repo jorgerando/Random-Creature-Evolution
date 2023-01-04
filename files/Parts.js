@@ -30,6 +30,7 @@ class Part {
    this.posicion = [ 100 , 0];
    this.uniones = [] ;
    this.body = null ;
+   this.indicesUnion = [] ;
 
   }
 
@@ -89,15 +90,15 @@ class Part {
 
    var arribaIzq = [ -w/2 * ratio , - h/2 * ratio  ] ;
    var abajoIzq = [ -w/2 * ratio ,  + h/2 * ratio  ] ;
-   this.uniones = [arribaDerecha,abajoDerecha,arribaIzq,abajoIzq] ;
+   this.uniones = [centro,arribaDerecha,abajoDerecha,arribaIzq,abajoIzq] ;
 }
 
   generarUnionesTri(){
   var centro = [0 , 0 ] ;
   var radioUnion = (this.dimesiones[0]) * 0.65 ;
-  var l1 = [ Math.cos(2*Math.PI/2)*radioUnion  , Math.sin(2*Math.PI/2)*radioUnion ] ;
-  var l2 = [ Math.cos(2*Math.PI/2 + 2*Math.PI/3)*radioUnion  , Math.sin(2*Math.PI/2+ 2*Math.PI/3)*radioUnion ] ;
-  var l3 = [ Math.cos(2*Math.PI/2 + 4*Math.PI/3)*radioUnion  , Math.sin(2*Math.PI/2+ 4*Math.PI/3)*radioUnion ] ;
+  var l1 = [ Math.cos(Math.PI)*radioUnion  , Math.sin(Math.PI)*radioUnion ] ;
+  var l2 = [ Math.cos(Math.PI + 2*Math.PI/3)*radioUnion  , Math.sin(Math.PI+ 2*Math.PI/3)*radioUnion ] ;
+  var l3 = [ Math.cos(Math.PI + 4*Math.PI/3)*radioUnion  , Math.sin(Math.PI+ 4*Math.PI/3)*radioUnion ] ;
 
   this.uniones = [centro,l1,l2,l3];
 }
@@ -125,15 +126,31 @@ class Part {
   generarBody(filtro){
 
    if(this.tipo == "rect"){
-       this.body = Bodies.rectangle(this.posicion[0],this.posicion[1],this.dimesiones[0],this.dimesiones[1],{friction:10},{ collisionFilter:{ group:filtro }} );
+
+       this.body = Bodies.rectangle(this.posicion[0],this.posicion[1],this.dimesiones[0],this.dimesiones[1],{
+       collisionFilter: {
+       category: filtro,
+       mask: defaultCategory | filtro,
+       },
+       });
+
    } else if(this.tipo == "cir"){
-       this.body = Bodies.circle(this.posicion[0],this.posicion[1], this.dimesiones[0], { collisionFilter: {group:filtro }})
+
+    this.body = Bodies.circle(this.posicion[0],this.posicion[1], this.dimesiones[0], {
+         collisionFilter: {
+           category: filtro,
+           mask: defaultCategory | filtro,
+         },
+       })
+
    }else{
-       this.body = Matter.Bodies.polygon(this.posicion[0],this.posicion[1],3,this.dimesiones[0],{ friction:10},{ collisionFilter:{group:filtro  }} );
+       this.body = Matter.Bodies.polygon(this.posicion[0],this.posicion[1],3,this.dimesiones[0],{
+       collisionFilter: {
+       category: filtro,
+       mask: defaultCategory | filtro,
+       },
+       });
    }
-   //this.body.restitution = 0.8 ;
-   //this.body.collisionFilter.group = filtro ;
-   //this.body.collisionFilter.mask = 0b0001 | filtro ;
 
 }
 
@@ -145,6 +162,7 @@ generar(tipo_, dim, p,filtro) {
   this.tipo = tipo_;
   this.dimesiones = dim;
   this.posicion = p;
+  this.indicesUnion = [] ;
   this.generarBody(filtro);
   this.generarUniones();
 }
@@ -159,10 +177,26 @@ generarRandom(p,filtro){
 
 mover(p){
   Matter.Body.setPosition( this.body,Matter.Vector.create(p[0], p[1]) ) ;
+  this.posicion = p ;
 }
 
 devolverBody(){
   return this.body ;
+}
+
+devolverUnion(n){
+  return this.uniones[n] ;
+}
+
+marcarUnion(indice,tipo){
+ this.indicesUnion.push( [ indice,tipo] );
+}
+
+copiarse(filtro){
+  var copia = new Part() ;
+  copia.generar(this.tipo,this.dimesiones,this.posicion,filtro);
+  copia.indicesUnion = this.indicesUnion;
+  return copia ;
 }
 
 }
