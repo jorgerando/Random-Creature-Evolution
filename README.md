@@ -3,9 +3,8 @@
 It is a software robotics engineering quarter project for the machine learning subject. It consists of a simple genetic algorithm in which randomly generated creatures evolve to become faster while moving.
 
 ## Game Rules 
+The creatures will be formed by 3 types of pieces: solids, thrusters and unions
 ![MicrosoftTeams-image](https://user-images.githubusercontent.com/69701088/210605619-1e30fe45-6669-4db5-9c4c-1f0977546095.png)
-
-The creatures will be formed by 2 types of pieces: solids, thrusters and unions
 
 ## Random Creature Creation
 ![MicrosoftTeams-image (1)](https://user-images.githubusercontent.com/69701088/210605657-aae70b31-97a1-4f20-b171-e07c72943052.png)
