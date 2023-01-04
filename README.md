@@ -4,6 +4,7 @@ It is a software robotics engineering quarter project for the machine learning s
 
 ## Game Rules 
 The creatures will be formed by 3 types of pieces: solids, thrusters and unions
+
 ![MicrosoftTeams-image](https://user-images.githubusercontent.com/69701088/210605619-1e30fe45-6669-4db5-9c4c-1f0977546095.png)
 
 ## Random Creature Creation
