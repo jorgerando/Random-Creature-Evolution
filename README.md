@@ -39,17 +39,36 @@ A fundamental part of a genetic algorithm is the fitness function that tells us 
 ![MicrosoftTeams-image (2)](https://user-images.githubusercontent.com/69701088/210605813-f3604d81-4cf4-4fb3-9a41-984d4232b5bf.png)
 
 ## Repduction 
+
+In order to generate a new generation from the previous ones, we have created a reproduction algorithm for n individuals. This algorithm consists of 3 steps: merge bodies, merge appendages and merge joins.
+
 ![imagen4](https://user-images.githubusercontent.com/69701088/210605185-e27ca853-ac0a-4f93-8772-0c4dccfd2d2a.png)
+
+Mixture of bodies: if the bodies of the parents are of different types, a random one is selected; Otherwise, the average of the bodies of the parents is made.
+
+Merge appendages: it is iterated through all the appendages of the parents in hourly order, if the appendages are different, a random one is chosen, if they are the same, the average is done.
+
+Merge joins : try to join as parent appendage if not possible search for a new coherent join point
+
+This gif shows some examples of reproduction
+ 
 ![repo](https://user-images.githubusercontent.com/69701088/210668287-bef3a5cc-498b-4670-a1f0-5c68c65b9d0d.gif)
 
-## Mutation 
+## Mutation
+
+So that the generations do not stagnate in a genetic algorithm, there must be a probability that when reproducing a mutation is produced. In this case, the mutation will occur with a 5% probability and will consist of adding an extra random appendage or removing an existing one.
+
 ![MicrosoftTeams-image (5)](https://user-images.githubusercontent.com/69701088/210605701-bfb5d44f-b1d3-4aa6-ac42-d29bfa4c14b7.png)
 
-## Results 
+## Results
+
+As can be seen in the gif, as the generations pass, individuals are able to move faster and faster (the gif is in fast motion).
+
 ![fin2](https://user-images.githubusercontent.com/69701088/210675131-d3ad2e1a-c302-4ec5-b373-526704e7f124.gif)
-### Initial Generations  
+
+#### Initial Generations (normal speed) 
 ![inicial](https://user-images.githubusercontent.com/69701088/210676080-34cc067f-f3b0-4d88-9a69-a577fe92907f.gif)
-### End Generations  
+#### End Generations (normal speed)
 ![finales](https://user-images.githubusercontent.com/69701088/210676555-c168698e-2495-4043-9648-f8e55e21bce8.gif)
 
 ## References :
