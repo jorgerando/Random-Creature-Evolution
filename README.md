@@ -16,12 +16,26 @@ Solids can be rectangles, circles, and triangles. This type of appendage does no
 ## Random Creature Creation 
 
 The first generation of a genetic algorithm must always be random, therefore we have designed an algorithm for the random creation of creatures.
+This algorithm has 4 parts: creation of solids and propellers, selection of the individual's body, positioning of the appendages and creation of the joints.
 
 ![MicrosoftTeams-image (1)](https://user-images.githubusercontent.com/69701088/210605657-aae70b31-97a1-4f20-b171-e07c72943052.png)
+
+Creation of solids: in this first stage, between 2 to 3 solids and propellants will be generated randomly
+
+Selection of the Body: it will be iterated through all the solids looking for the one with the greatest area. The one with the most area will be the individual's body
+
+  Positioning of the appendages: the body of the individual will be positioned in the center and the other appendages will be positioned around randomly avoiding collisions
+
+Creation of the unions: all the appendages will be joined to the body with unions of dimension and random type
+
+This gif shows some individuals generated with this algorithm
 
 ![GeneracionRnaodm](https://user-images.githubusercontent.com/69701088/210665108-399735f5-feab-40f1-b3cb-7b99e7383ce2.gif)
 
 ## Fitness 
+
+A fundamental part of a genetic algorithm is the fitness function that tells us how fit an individual is. In this case we will let the individuals of a generation move freely around the world for 20 seconds and those who go further will be the fittest and will have the most probability of reproducing and passing on their genes.
+
 ![MicrosoftTeams-image (2)](https://user-images.githubusercontent.com/69701088/210605813-f3604d81-4cf4-4fb3-9a41-984d4232b5bf.png)
 
 ## Repduction 
