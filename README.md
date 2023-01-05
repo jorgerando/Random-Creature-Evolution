@@ -1,15 +1,13 @@
 # Random Creature Evolution <img src="https://media.giphy.com/media/gk98xOaJEgStxaAMZW/giphy.gif" width="65" height="65"/>
 
-
-
 It is a software robotics engineering quarter project for the machine learning subject. It consists of a simple genetic algorithm in which randomly generated creatures evolve to become faster while moving.
 ![intro](https://user-images.githubusercontent.com/69701088/210674414-a32072b0-86ab-4343-b095-f151efb9c516.gif)
 
 ## Game Rules <img src="https://media.giphy.com/media/b7lp44pNiRqsU/giphy.gif" width="40" height="40"/>
 The creatures will be formed by 3 types of pieces: solids, thrusters and unions
-![partes](https://user-images.githubusercontent.com/69701088/210665000-778664d2-af8b-438a-a081-0680c1e0d40b.gif)
-
 ![MicrosoftTeams-image](https://user-images.githubusercontent.com/69701088/210605619-1e30fe45-6669-4db5-9c4c-1f0977546095.png)
+
+![partes](https://user-images.githubusercontent.com/69701088/210665000-778664d2-af8b-438a-a081-0680c1e0d40b.gif)
 
 ## Random Creature Creation 
 ![MicrosoftTeams-image (1)](https://user-images.githubusercontent.com/69701088/210605657-aae70b31-97a1-4f20-b171-e07c72943052.png)
@@ -27,7 +25,9 @@ The creatures will be formed by 3 types of pieces: solids, thrusters and unions
 
 ## Results 
 ![fin2](https://user-images.githubusercontent.com/69701088/210675131-d3ad2e1a-c302-4ec5-b373-526704e7f124.gif)
+### Initial Generations  
 ![inicial](https://user-images.githubusercontent.com/69701088/210676080-34cc067f-f3b0-4d88-9a69-a577fe92907f.gif)
+### End Generations  
 ![finales](https://user-images.githubusercontent.com/69701088/210676555-c168698e-2495-4043-9648-f8e55e21bce8.gif)
 
 ## References :
