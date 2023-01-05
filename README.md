@@ -1,6 +1,7 @@
 # Random Creature Evolution
 
 It is a software robotics engineering quarter project for the machine learning subject. It consists of a simple genetic algorithm in which randomly generated creatures evolve to become faster while moving.
+![intro](https://user-images.githubusercontent.com/69701088/210674414-a32072b0-86ab-4343-b095-f151efb9c516.gif)
 
 ## Game Rules 
 The creatures will be formed by 3 types of pieces: solids, thrusters and unions
