@@ -6,12 +6,19 @@ It is a software robotics engineering quarter project for the machine learning s
 
 ## Game Rules <img src="https://media.giphy.com/media/b7lp44pNiRqsU/giphy.gif" width="40" height="40"/>
 The creatures will be formed by 3 types of pieces: solids, thrusters and unions
+
 ![MicrosoftTeams-image](https://user-images.githubusercontent.com/69701088/210605619-1e30fe45-6669-4db5-9c4c-1f0977546095.png)
+
+Solids can be rectangles, circles, and triangles. This type of appendage does not produce force and its dimensions will be random. The thrusters rot force in a specific direction with a magnitude and frequency that will depend on their mass. Very heavy propellers will produce a lot of force but with low frequency and light propellers will produce little force but with great frequency. Finally, there are the unions that are in charge of joining appendages and can be elastic or solid.
 
 ![partes](https://user-images.githubusercontent.com/69701088/210665000-778664d2-af8b-438a-a081-0680c1e0d40b.gif)
 
 ## Random Creature Creation 
+
+The first generation of a genetic algorithm must always be random, therefore we have designed an algorithm for the random creation of creatures.
+
 ![MicrosoftTeams-image (1)](https://user-images.githubusercontent.com/69701088/210605657-aae70b31-97a1-4f20-b171-e07c72943052.png)
+
 ![GeneracionRnaodm](https://user-images.githubusercontent.com/69701088/210665108-399735f5-feab-40f1-b3cb-7b99e7383ce2.gif)
 
 ## Fitness 
