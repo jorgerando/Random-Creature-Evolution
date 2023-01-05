@@ -31,10 +31,14 @@ The creatures will be formed by 3 types of pieces: solids, thrusters and unions
 ## References :
 
 Evolution : https://en.wikipedia.org/wiki/Natural_selection
+
 Nature of code Book : https://natureofcode.com/book/chapter-9-the-evolution-of-code
+
 Genetic Algorims : https://en.wikipedia.org/wiki/Genetic_algorithm 
+
 matterJs : https://brm.io/matter-js/
 
 ## Autors
 Jorge Rando Hernández 〽️ @jorgerando
+
 Javi  〽️ @ javi-dbgr
